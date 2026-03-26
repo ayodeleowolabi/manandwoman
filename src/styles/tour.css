@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+:root {
+  --black: #0d0d0d;
+  --off-white: #faf9f7;
+  --mid-gray: #6b6b6b;
+  --light-gray: #e8e4de;
+  --gold: #c8923a;
+  --rule: #d4cfc8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--off-white);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tour-page {
+  min-height: 100vh;
+  background: var(--off-white);
+}
+
+/* â”€â”€ Nav â”€â”€ */
+.tour-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 1.4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  background: rgba(250, 249, 247, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.tour-nav-logo {
+  font-family: 'Chango', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.tour-nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.tour-nav-links a {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.tour-nav-links a:hover,
+.tour-nav-links a.active { color: var(--black); }
+
+/* â”€â”€ Hero â”€â”€ */
+.tour-hero {
+  padding: 10rem 3rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tour-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.tour-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--black);
+}
+
+.tour-headline em {
+  font-style: italic;
+  color: var(--mid-gray);
+}
+
+/* â”€â”€ Dates list â”€â”€ */
+.tour-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.tour-date-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 3rem;
+  padding: 2.8rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+}
+
+.tour-date-row:first-child {
+  border-top: none;
+}
+
+/* â”€â”€ Date column â”€â”€ */
+.tour-date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tour-date-month {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.tour-date-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--black);
+}
+
+/* â”€â”€ Venue column â”€â”€ */
+.tour-venue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tour-venue-name {
+  font-family: 'Chango', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  color: var(--black);
+}
+
+.tour-venue-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.tour-venue-time {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--mid-gray);
+}
+
+.tour-badge {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--rule);
+  color: var(--mid-gray);
+}
+
+.tour-badge.private {
+  border-color: #0d0d0d30;
+  color: var(--black);
+  background: rgba(13,13,13,0.04);
+}
+
+.tour-badge.free {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* â”€â”€ Right column â”€â”€ */
+.tour-action {
+  text-align: right;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  white-space: nowrap;
+}
+
+/* â”€â”€ Closing â”€â”€ */
+.tour-closing {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 3rem 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.tour-closing-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  max-width: 22ch;
+}
+
+.tour-closing-text em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.tour-closing-link {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.25s, border-color 0.25s;
+  flex-shrink: 0;
+}
+
+.tour-closing-link:hover {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* â”€â”€ Mobile â”€â”€ */
+@media (max-width: 768px) {
+  .tour-nav { padding: 1.2rem 1.5rem; }
+  .tour-nav-links { display: none; }
+
+  .tour-hero { padding: 8rem 1.5rem 3rem; }
+
+  .tour-list { padding: 0 1.5rem; }
+
+  .tour-date-row {
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+
+  .tour-action { display: none; }
+
+  .tour-date-day { font-size: 2.6rem; }
+  .tour-venue-name { font-size: 1.1rem; }
+
+  .tour-closing {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem 1.5rem 6rem;
+    gap: 2rem;
+  }
+}

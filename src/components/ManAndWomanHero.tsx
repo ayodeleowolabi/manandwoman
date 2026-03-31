@@ -15,7 +15,6 @@ export default function ManAndWomanHero() {
 
   return (
     <div className="mw-root">
-
       <img
         ref={imgRef}
         src="/images/man-and-woman.png"
@@ -28,15 +27,13 @@ export default function ManAndWomanHero() {
       <div className="hr-accent hr-bottom" />
 
       <header className={`header ${loaded ? "visible" : ""}`}>
-
-
         {/* Desktop nav */}
         <nav className="header-nav desktop-nav">
-          <a>Music</a>
-        <Link href="/tour">Tour</Link>
-        <Link href="/about">About</Link>
-        <Link href="/video">Watch</Link>
-        <Link href="/contact">Contact</Link>
+          <Link href="/music">Music</Link>
+          <Link href="/tour">Tour</Link>
+          <Link href="/about">About</Link>
+          <Link href="/video">Watch</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
 
         {/* Hamburger button */}
@@ -51,30 +48,26 @@ export default function ManAndWomanHero() {
         </button>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay — all 5 links, all with hrefs */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <nav className="mobile-nav">
-    
-          <a onClick={() => setMenuOpen(false)}>Tour</a>
-          <a onClick={() => setMenuOpen(false)}>About</a>
-          <a onClick={() => setMenuOpen(false)}>Contact</a>
+          <Link href="/music" onClick={() => setMenuOpen(false)}>Music</Link>
+          <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
         </nav>
       </div>
-
-  
 
       <div className="title-block">
         <h1 className={`title-main ${loaded ? "visible" : ""}`}>
           MAN <em>&</em> WOMAN
         </h1>
-       
       </div>
 
       <div className={`scroll-indicator ${loaded ? "visible" : ""}`}>
         <div className="scroll-line" />
-    
       </div>
-
     </div>
   );
 }

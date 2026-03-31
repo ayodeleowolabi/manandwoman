@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import "@/styles/video.css";
 
@@ -11,16 +11,15 @@ const videos = [
     id: "f13c067a295f0754330b7d2867e4db5a",
     title: "Change the World",
     subtitle: "Eric Clapton & Babyface",
-    location: "Arthouse, Washington DC",
+    location: "Artechouse, Washington DC",
     orientation: "horizontal" as const,
     comingSoon: false,
   },
-
   {
     id: "328efa60e80b473cdea3574b5c939e94",
     title: "A Little Bit of Everything",
     subtitle: "",
-    location: "Arthouse, Washington DC",
+    location: "Artechouse, Washington DC",
     orientation: "vertical" as const,
     comingSoon: false,
   },
@@ -28,9 +27,24 @@ const videos = [
 
 export default function VideoPage() {
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
   const prev = () => setCurrent((c) => Math.max(0, c - 1));
   const next = () => setCurrent((c) => Math.min(videos.length - 1, c + 1));
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (isMobile) return; // let mobile scroll naturally
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (isMobile || touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50) next();
+    if (diff < -50) prev();
+    touchStartX.current = null;
+  };
 
   const embedUrl = (id: string) => {
     const poster = encodeURIComponent(
@@ -42,7 +56,7 @@ export default function VideoPage() {
   return (
     <div className="video-page">
 
-      {/* ── Nav ── */}
+      {/* Nav */}
       <nav className="video-nav">
         <Link href="/" className="video-nav-logo">M&W</Link>
         <div className="video-nav-links">
@@ -54,16 +68,19 @@ export default function VideoPage() {
         </div>
       </nav>
 
-      {/* ── Carousel ── */}
+      {/* Carousel (desktop) / Scroll stack (mobile) */}
       <section className="carousel-section">
-        <div className="carousel-track-wrap">
+        <div
+          className="carousel-track-wrap"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           <div
             className="carousel-track"
             style={{ transform: `translateX(-${current * 100}vw)` }}
           >
             {videos.map((v, i) => (
               <div className="carousel-slide" key={i}>
-
                 <div className={`slide-video-wrap ${v.orientation}`}>
                   <div className={`aspect-box ${v.orientation}`}>
                     {v.comingSoon ? (
@@ -97,13 +114,12 @@ export default function VideoPage() {
                     <span className="slide-tag">{v.location}</span>
                   )}
                 </div>
-
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── Controls ── */}
+        {/* Controls — hidden on mobile via CSS */}
         <div className="carousel-controls">
           <button
             className="carousel-btn"
@@ -113,7 +129,6 @@ export default function VideoPage() {
           >
             ←
           </button>
-
           <div className="carousel-dots">
             {videos.map((_, i) => (
               <button
@@ -124,7 +139,6 @@ export default function VideoPage() {
               />
             ))}
           </div>
-
           <button
             className="carousel-btn"
             onClick={next}
@@ -135,7 +149,6 @@ export default function VideoPage() {
           </button>
         </div>
       </section>
-
     </div>
   );
 }

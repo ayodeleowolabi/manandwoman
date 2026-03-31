@@ -275,8 +275,38 @@ body {
 @media (max-width: 768px) {
   .video-nav { padding: 1.2rem 1.5rem; }
   .video-nav-links { display: none; }
-  .video-hero { padding: 8rem 1.5rem 3rem; }
+  .carousel-section { padding-top: 5rem; }
   .carousel-slide { padding: 0 1.5rem; }
+
+  /* Hide carousel controls on mobile */
+  .carousel-controls { display: none; }
+
+  /* Kill the sliding track — stack vertically instead */
+  .carousel-track {
+    flex-direction: column;
+    transform: none !important;
+  }
+
+  .carousel-slide {
+    flex: unset;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  /* Horizontal video: full width 16:9 */
+  .slide-video-wrap.horizontal {
+    max-width: 100%;
+  }
+
+  .aspect-box.horizontal {
+    padding-top: 56.25%;
+  }
+
+  /* Vertical video: full width portrait */
+  .slide-video-wrap.vertical {
+    max-width: 100%;
+  }
+
   .slide-meta {
     flex-direction: column;
     align-items: flex-start;

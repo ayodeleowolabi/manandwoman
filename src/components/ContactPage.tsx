@@ -5,6 +5,7 @@ import Link from "next/link";
 import "@/styles/contact.css";
 
 export default function ContactPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -44,16 +45,41 @@ export default function ContactPage() {
   return (
     <div className="contact-page">
 
+      {/* Nav */}
       <nav className="contact-nav">
         <Link href="/" className="contact-nav-logo">M&W</Link>
+
+        {/* Desktop links */}
         <div className="contact-nav-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/video">Watch</Link>
-            <Link href="/tour">Tour</Link>
+          <Link href="/tour">Tour</Link>
           <a href="#" className="active">Contact</a>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className={`contact-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
+
+      {/* Mobile drawer */}
+      <div className={`contact-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <nav className="contact-mobile-nav">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>
+          <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
+      </div>
 
       <section className="contact-hero">
         <p className="contact-eyebrow">Get in Touch</p>

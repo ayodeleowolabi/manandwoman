@@ -27,6 +27,7 @@ const videos = [
 
 export default function VideoPage() {
   const [current, setCurrent] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
@@ -34,7 +35,7 @@ export default function VideoPage() {
   const next = () => setCurrent((c) => Math.min(videos.length - 1, c + 1));
 
   const onTouchStart = (e: React.TouchEvent) => {
-    if (isMobile) return; // let mobile scroll naturally
+    if (isMobile) return;
     touchStartX.current = e.touches[0].clientX;
   };
 
@@ -59,6 +60,8 @@ export default function VideoPage() {
       {/* Nav */}
       <nav className="video-nav">
         <Link href="/" className="video-nav-logo">M&W</Link>
+
+        {/* Desktop links */}
         <div className="video-nav-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
@@ -66,7 +69,29 @@ export default function VideoPage() {
           <a href="#" className="active">Watch</a>
           <Link href="/contact">Contact</Link>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className={`video-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
+
+      {/* Mobile menu drawer */}
+      <div className={`video-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <nav className="video-mobile-nav">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
+          <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
+      </div>
 
       {/* Carousel (desktop) / Scroll stack (mobile) */}
       <section className="carousel-section">
@@ -121,14 +146,7 @@ export default function VideoPage() {
 
         {/* Controls — hidden on mobile via CSS */}
         <div className="carousel-controls">
-          <button
-            className="carousel-btn"
-            onClick={prev}
-            disabled={current === 0}
-            aria-label="Previous"
-          >
-            ←
-          </button>
+          <button className="carousel-btn" onClick={prev} disabled={current === 0} aria-label="Previous">←</button>
           <div className="carousel-dots">
             {videos.map((_, i) => (
               <button
@@ -139,14 +157,7 @@ export default function VideoPage() {
               />
             ))}
           </div>
-          <button
-            className="carousel-btn"
-            onClick={next}
-            disabled={current === videos.length - 1}
-            aria-label="Next"
-          >
-            →
-          </button>
+          <button className="carousel-btn" onClick={next} disabled={current === videos.length - 1} aria-label="Next">→</button>
         </div>
       </section>
     </div>

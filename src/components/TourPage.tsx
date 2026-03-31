@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import "@/styles/tour.css";
 
@@ -12,7 +13,7 @@ const shows = [
     badge: "Private Event",
     badgeType: "private",
   },
-   {
+  {
     month: "April",
     day: "04",
     venue: "The Alex, Speakeasy DC",
@@ -28,7 +29,7 @@ const shows = [
     badge: "Free",
     badgeType: "free",
   },
-     {
+  {
     month: "April",
     day: "10",
     venue: "The Alex, Speakeasy DC",
@@ -47,12 +48,16 @@ const shows = [
 ];
 
 export default function TourPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="tour-page">
 
-      {/* ── Nav ── */}
+      {/* Nav */}
       <nav className="tour-nav">
         <Link href="/" className="tour-nav-logo">M&W</Link>
+
+        {/* Desktop links */}
         <div className="tour-nav-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
@@ -60,19 +65,39 @@ export default function TourPage() {
           <a href="#" className="active">Tour</a>
           <Link href="/contact">Contact</Link>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className={`tour-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
 
-      {/* ── Hero ── */}
+      {/* Mobile drawer */}
+      <div className={`tour-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <nav className="tour-mobile-nav">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>
+          <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
+      </div>
+
+      {/* Hero */}
       <section className="tour-hero">
         <p className="tour-eyebrow">Live Dates — 2026</p>
-        
       </section>
 
-      {/* ── Show list ── */}
+      {/* Show list */}
       <section className="tour-list">
         {shows.map((show, i) => (
           <div className="tour-date-row" key={i}>
-
             <div className="tour-date">
               <span className="tour-date-month">{show.month}</span>
               <span className="tour-date-day">{show.day}</span>
@@ -93,16 +118,14 @@ export default function TourPage() {
             <div className="tour-action">
               {show.badgeType === "free" ? "Free Entry" : "By Invitation"}
             </div>
-
           </div>
         ))}
       </section>
 
-      {/* ── Closing ── */}
+      {/* Closing */}
       <footer className="tour-closing">
         <p className="tour-closing-text">
           Want us at your event?<br />
-          <em>Let&apos;s make it happen.</em>
         </p>
         <Link href="/contact" className="tour-closing-link">
           Get in Touch →

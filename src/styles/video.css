@@ -272,6 +272,81 @@ body {
   border-radius: 3px;
 }
 
+/* Hamburger — hidden on desktop */
+.video-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.video-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--black);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animate to X when open */
+.video-hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.video-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.video-hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+.video-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(250, 249, 247, 0.97);
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-mobile-menu.open {
+  display: flex;
+}
+
+.video-mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.video-mobile-nav a {
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.video-mobile-nav a:hover {
+  color: var(--gold);
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+  .video-hamburger {
+    display: flex;
+  }
+}
+
 @media (max-width: 768px) {
   .video-nav { padding: 1.2rem 1.5rem; }
   .video-nav-links { display: none; }

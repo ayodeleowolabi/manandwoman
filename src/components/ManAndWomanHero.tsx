@@ -29,7 +29,7 @@ export default function ManAndWomanHero() {
       <header className={`header ${loaded ? "visible" : ""}`}>
         {/* Desktop nav */}
         <nav className="header-nav desktop-nav">
-          <Link href="/music">Music</Link>
+      
           <Link href="/tour">Tour</Link>
           <Link href="/about">About</Link>
           <Link href="/video">Watch</Link>
@@ -51,7 +51,6 @@ export default function ManAndWomanHero() {
       {/* Mobile menu overlay — all 5 links, all with hrefs */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <nav className="mobile-nav">
-          <Link href="/music" onClick={() => setMenuOpen(false)}>Music</Link>
           <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
           <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
           <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>

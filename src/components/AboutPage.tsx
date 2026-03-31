@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import "@/styles/about.css";
 
 export default function AboutPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>(".fade-up");
@@ -19,25 +20,44 @@ export default function AboutPage() {
 
       <nav className="about-nav">
         <Link href="/" className="about-nav-logo">M&W</Link>
+
+        {/* Desktop links */}
         <div className="about-nav-links">
           <Link href="/">Home</Link>
           <Link href="/video">Watch</Link>
-          <Link href="/about" className="active">
-            About
-          </Link>
-          <Link href="/tour" className="active">
-            Tour
-          </Link>
+          <Link href="/about" className="active">About</Link>
+          <Link href="/tour" className="active">Tour</Link>
           <Link href="/contact">Contact</Link>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          className={`about-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
+
+      {/* Mobile drawer */}
+      <div className={`about-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <nav className="about-mobile-nav">
+          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/video" onClick={() => setMenuOpen(false)}>Watch</Link>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/tour" onClick={() => setMenuOpen(false)}>Tour</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
+      </div>
 
       <section className="about-hero">
         <p className="about-eyebrow fade-up">Reimagined, Classic Duets of our time</p>
       </section>
 
       <section className="about-body">
-
         <aside className="about-sidebar fade-up">
           <p className="about-sidebar-label">The Artists</p>
           <div className="about-sidebar-names">
@@ -80,10 +100,10 @@ export default function AboutPage() {
             <p className="fade-up">
               The repertoire is deliberately iconic; songs people carry in their
               bodies before the first note lands. From{" "}
-             <strong>Ain&apos;t No Mountain High Enough</strong> to{" "}
-             <strong>Die With a Smile</strong>. from {" "}
+              <strong>Ain&apos;t No Mountain High Enough</strong> to{" "}
+              <strong>Die With a Smile</strong>. from{" "}
               <strong>Waters of March</strong>, to{" "}
-               <strong>Islands in the Stream</strong> {" "}, every song is chosen for
+              <strong>Islands in the Stream</strong>{" "}, every song is chosen for
               emotional weight and then stripped back, rebuilt, and delivered with
               full presence.
             </p>
@@ -98,11 +118,9 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
       </section>
 
       <footer className="about-closing">
-
         <a href="#" className="about-closing-cta fade-up">
           View Dates →
         </a>

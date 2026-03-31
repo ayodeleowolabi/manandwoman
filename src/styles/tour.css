@@ -206,8 +206,8 @@ body {
 
 .tour-closing-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 3vw, 3rem);
-  font-weight: 300;
+  font-size: clamp(1.5rem, 1vw, 3rem);
+  font-weight: 200;
   line-height: 1.2;
   max-width: 22ch;
 }
@@ -235,6 +235,73 @@ body {
   border-color: var(--black);
 }
 
+/* Hamburger — hidden on desktop */
+.tour-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.tour-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--black);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.tour-hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.tour-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.tour-hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+.tour-mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(250, 249, 247, 0.97);
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  align-items: center;
+  justify-content: center;
+}
+
+.tour-mobile-menu.open {
+  display: flex;
+}
+
+.tour-mobile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.tour-mobile-nav a {
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tour-mobile-nav a:hover {
+  color: var(--gold);
+}
+
 /* â”€â”€ Mobile â”€â”€ */
 @media (max-width: 768px) {
   .tour-nav { padding: 1.2rem 1.5rem; }
@@ -249,6 +316,8 @@ body {
     gap: 1.5rem;
     padding: 2rem 0;
   }
+   .tour-nav-links { display: none; }
+  .tour-hamburger { display: flex; }
 
   .tour-action { display: none; }
 

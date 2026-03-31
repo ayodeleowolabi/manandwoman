@@ -49,6 +49,7 @@ export default function ContactPage() {
         <div className="contact-nav-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/video">Watch</Link>
             <Link href="/tour">Tour</Link>
           <a href="#" className="active">Contact</a>
         </div>

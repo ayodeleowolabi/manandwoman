@@ -21,6 +21,7 @@ export default function AboutPage() {
         <Link href="/" className="about-nav-logo">M&W</Link>
         <div className="about-nav-links">
           <Link href="/">Home</Link>
+          <Link href="/video">Watch</Link>
           <Link href="/about" className="active">
             About
           </Link>
@@ -101,12 +102,9 @@ export default function AboutPage() {
       </section>
 
       <footer className="about-closing">
-        <p className="about-closing-text fade-up">
-          The room remembers<br />
-          <em>long after the last note.</em>
-        </p>
+
         <a href="#" className="about-closing-cta fade-up">
-          View Tour Dates →
+          View Dates →
         </a>
       </footer>
 

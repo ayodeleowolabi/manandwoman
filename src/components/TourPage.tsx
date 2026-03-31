@@ -12,10 +12,26 @@ const shows = [
     badge: "Private Event",
     badgeType: "private",
   },
+   {
+    month: "April",
+    day: "04",
+    venue: "The Alex, Speakeasy DC",
+    time: null,
+    badge: "Free",
+    badgeType: "free",
+  },
   {
     month: "April",
     day: "05",
     venue: "St. Vincent Winery",
+    time: null,
+    badge: "Free",
+    badgeType: "free",
+  },
+     {
+    month: "April",
+    day: "10",
+    venue: "The Alex, Speakeasy DC",
     time: null,
     badge: "Free",
     badgeType: "free",
@@ -40,6 +56,7 @@ export default function TourPage() {
         <div className="tour-nav-links">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
+          <Link href="/video">Watch</Link>
           <a href="#" className="active">Tour</a>
           <Link href="/contact">Contact</Link>
         </div>
